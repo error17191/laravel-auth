@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('auth', function () {
+    return 'protected';
+})->middleware('auth');
+
+Route::get('logmein', function () {
+    auth()->loginUsingId(1);
+    return response()->json(['a' => 'b']);
+});
